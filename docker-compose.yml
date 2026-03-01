@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+
+  api:
+    build: .
+    ports:
+      - '8000:8000'
+    volumes:
+      - ./models:/app/models
+      - ./data:/app/data
+    command: uvicorn src.api.app:app --host 0.0.0.0 --port 8000 --reload
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.11.0
+    ports:
+      - '5000:5000'
+    volumes:
+      - ./mlruns:/mlruns
+    command: mlflow ui --host 0.0.0.0 --port 5000
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - '3000:3000'
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./dashboards:/etc/grafana/provisioning/dashboards
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=finops2024
+      - GF_USERS_ALLOW_SIGN_UP=false
+
+volumes:
+  grafana_data:
