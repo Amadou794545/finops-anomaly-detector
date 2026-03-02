@@ -29,7 +29,6 @@ Le projet utilise une structure modulaire professionnelle :
 * src/models/ : Benchmarking et entraînement des modèles de forecasting.
 * src/detection/ : Logique de détection d'anomalies (Isolation Forest & Seuils statistiques).
 * src/api/ : Serveur FastAPI permettant de requêter les prévisions par service.
-* tests/ : Tests unitaires garantissant la fiabilité du système (Pytest).
 
 ## 🚀 Installation rapide
 Le projet est conçu pour être testé en local, sans frais AWS.
