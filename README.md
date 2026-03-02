@@ -36,7 +36,7 @@
 [cite_start]Le projet est conçu pour être lancé en local sans avoir besoin d'un compte AWS[cite: 34].
 
 1. **Cloner le projet** :
-   git clone [https://github.com/TON_USERNAME/finops-anomaly-detector](https://github.com/Amadou794545/finops-anomaly-detector.git)
+   git clone https://github.com/Amadou794545/finops-anomaly-detector.git
    cd finops-anomaly-detector
 
 2. **Installer les dépendances** :
@@ -52,4 +52,5 @@
 ## 🧪 Industrialisation (CI/CD)
 
 [cite_start]Une pipeline GitHub Actions est intégrée pour exécuter automatiquement les tests unitaires et vérifier le style du code à chaque modification (flake8)[cite: 443, 461, 464].
+
 
