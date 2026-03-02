@@ -1,55 +1,49 @@
-﻿# 🔍 FinOps Anomaly Detector
+# 🔍 FinOps Anomaly Detector
 
 > Système de détection d'anomalies et de prévision des coûts Cloud basé sur des modèles de séries temporelles et du Machine Learning non supervisé.
 
 ---
 
-## 🎯 Objectif du Projet
-L'objectif est de résoudre un problème concret rencontré par les équipes Cloud : la peur de la "facture surprise"[cite: 4, 128]. [cite_start]Ce système automatise la surveillance des coûts en apprenant les patterns normaux et en alertant dès qu'une dérive est détectée[cite: 224, 226].
+## 🎯 Problème résolu
+Les équipes FinOps passent des heures à surveiller manuellement les factures Cloud pour éviter les dépassements budgétaires. Ce projet automatise cette tâche : il apprend le comportement normal des dépenses et alerte immédiatement en cas d'anomalie.
 
-## 📊 Résultats & Métriques
-Le projet a été validé sur 7 services AWS (EC2, S3, RDS, Lambda, CloudFront, EKS, Redshift) avec les performances suivantes[cite: 76, 222, 481]:
+## 📊 Résultats obtenus
+Le système a été validé sur 7 services AWS (EC2, S3, RDS, Lambda, CloudFront, EKS, Redshift) :
 
-* **MAPE moyen (Prévision)** : ~6-8% avec le modèle Prophet [cite: 222, 483]
-* **F1-Score (Détection)** : 0.89 [cite: 484]
-* **Faux Positifs** : 4.1% [cite: 485]
-* ]**Fréquence d'analyse** : Journalière avec détection < 1 min via API [cite: 83, 486]
+* MAPE moyen (Prévision) : ~8% avec le modèle Prophet.
+* F1-Score (Détection) : 0.89.
+* Faux positifs : ~4%.
+* Détection en temps réel : < 1 min via l'API.
 
 ## 🛠️ Stack Technique
-* **Langage** : Python 3.11+ [cite: 36, 457]
-* **Séries Temporelles** : Prophet (Facebook) & SARIMA [cite: 151, 184]
-* **Machine Learning** : Isolation Forest (Scikit-Learn) [cite: 251, 252]
-* **MLOps** : MLflow pour le tracking des expériences [cite: 293, 301]
-* **API** : FastAPI pour l'exposition des modèles en temps réel [cite: 307, 313]
-* **Infrastructure** : Docker & Docker-Compose [cite: 367, 398]
+* Langage : Python 3.11+
+* Modèles : Prophet (Facebook), SARIMA, Isolation Forest (Scikit-Learn).
+* MLOps : MLflow pour le tracking des expériences et le versioning des modèles.
+* Backend : FastAPI pour l'exposition des prédictions.
+* Conteneurisation : Docker & Docker-compose.
 
-## 🏗️ Architecture du Code
-Le projet respecte une structure professionnelle prête pour la production[cite: 7, 8, 9]:
+## 🏗️ Architecture du Projet
+Le projet utilise une structure modulaire professionnelle :
 
-* `src/ingestion/` : Générateur de données simulant la saisonnalité et les tendances AWS[cite: 72, 95, 97].
-* `src/models/` : Scripts d'entraînement Prophet et SARIMA[cite: 151, 184].
-* `src/detection/` : Logique de détection par Isolation Forest et seuils statistiques[cite: 227, 251].
-* `src/api/` : API REST permettant de requêter les prévisions par service[cite: 308].
-* `tests/` : Tests unitaires garantissant la qualité du code (Pytest)[cite: 411, 414].
+* src/ingestion/ : Générateur de données simulant des patterns AWS réels (saisonnalité, tendances).
+* src/models/ : Benchmarking et entraînement des modèles de forecasting.
+* src/detection/ : Logique de détection d'anomalies (Isolation Forest & Seuils statistiques).
+* src/api/ : Serveur FastAPI permettant de requêter les prévisions par service.
+* tests/ : Tests unitaires garantissant la fiabilité du système (Pytest).
 
-## 🚀 Installation et Lancement
-Le projet est conçu pour être lancé en local sans avoir besoin d'un compte AWS[cite: 34].
+## 🚀 Installation rapide
+Le projet est conçu pour être testé en local, sans frais AWS.
 
-1. **Cloner le projet** :
+1. Cloner le projet :
    git clone https://github.com/Amadou794545/finops-anomaly-detector.git
+   
    cd finops-anomaly-detector
 
-2. **Installer les dépendances** :
-   pip install -r requirements.txt
-
-3. **Lancer l'environnement MLOps & API** :
+3. Lancer l'environnement (API & MLflow) :
    docker-compose up -d
+
+4. Générer les données et entraîner les modèles :
    python src/ingestion/data_generator.py
 
-4. **Accéder à l'API** :
-   Rendez-vous sur http://localhost:8000/docs pour tester les prédictions en direct.
-
-
-
-
-
+5. Accéder à l'API :
+   Rendez-vous sur http://localhost:8000/docs pour tester les endpoints.
